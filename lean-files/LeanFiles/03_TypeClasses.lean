@@ -13,7 +13,12 @@ class Group' (α : Type) extends Magma' α where
   l_inverse: ∀ x : α, add (invert x) x = e
 
 instance NatGroup : Group' ℤ where
-  sorry
+  add := sorry
+  assoc := sorry
+  e := sorry
+  l_id := sorry
+  invert := sorry
+  l_inverse := sorry
 
 infixr : 65 " ⊙ " => Magma'.add 
 postfix : 80 "⁻¹" => Group'.invert

@@ -1,3 +1,4 @@
+-- source: https://github.com/lftcm2023/lftcm2023/tree/master/LftCM/C11_Algebraic_Geometry
 /-
 #  Algebraic Geometry in `Mathlib`
 
