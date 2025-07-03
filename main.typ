@@ -61,6 +61,31 @@
 ]
 
 #slide[
+  = What is Proof Assistants
+  - Programs to write proofs
+  - Proofs are programs in a typed purely functional programming language
+    - Functional meaning the main abstraction are functions
+    - Purely meaning those functions are mathematical functions
+  - Using constructive mathematics with intuitionistic logic
+  - Underlying is the Calculus of Inductive Constructions (CIC)
+    - A typed Lambda Calculus
+    - Types can also contain terms
+  - A small trusted kernel does the type checking
+]
+
+#slide[
+  = Motivation to use Proof Assistants
+  - Preventing errors in proofs
+    - 1852: Francis Guthrie proposes the Four Color Theorem
+    - 1879: Alfred Kempe proposes a proof for the Four Color Theorem
+    - 1890: Percy Heawood shows, that Kempe's proof has faults
+  - Proof automation
+    - 1976: Kenneth Appel and Wolfgang Haken proof the Four Color Theorem computer aided
+    - 2005: Georges Gonthier formalizes a proof for the Four Color Theorem in Coq
+  - Preventing Bugs in Software
+]
+
+#slide[
   = My Masters Thesis
   #set text(size: 0.8em)
   ```coq
@@ -80,31 +105,6 @@
   Proof.
     congruence.
   ```
-]
-
-
-#slide[
-  = Motivation to use Proof Assistants
-  - Preventing errors in proofs
-    - 1852: Francis Guthrie proposes the Four Color Theorem
-    - 1879: Alfred Kempe proposes a proof for the Four Color Theorem
-    - 1890: Percy Heawood shows, that Kempe's proof has faults
-  - Proof automation
-    - 1976: Kenneth Appel and Wolfgang Haken proof the Four Color Theorem computer aided
-    - 2005: Georges Gonthier formalizes a proof for the Four Color Theorem in Coq
-  - Preventing Bugs in Software
-]
-
-#slide[
-  = What is Proof Assistants
-  - Programs to write proofs
-  - Proofs are programs in a typed purely functional programming language
-    - Functional meaning the main abstraction are functions
-    - Purely meaning those functions are mathematical functions
-  - Using constructive mathematics with intuitionistic logic
-  - Underlying is the Calculus of Inductive Constructions (CIC)
-    - A typed Lambda Calculus
-    - Types can also contain terms
 ]
 
 #slide[
@@ -144,7 +144,7 @@
     [$A and B$ ],[$A times B$], [product type],
     [$A or B$], [$A plus.circle B$], [tagged sum type],
     [$A arrow.double B$], [$A arrow B$ or $forall \_:A, B$ ], [function type],
-    [$forall x:T, P$], [$forall x:T, P$], [depdendent function type],
+    [$forall x:T, P$], [$forall x:T, P$], [dependent function type],
     [$exists x:T, P$], [$(x:T, P thin x)$], [dependent pair type],
     [$"True"$], [$"Unit"$ also called $"True"$], [Type with the one element $()$],
     [$"False"$], [$"Void"$ also called $"False"$], [ Type with no elements],
@@ -170,6 +170,42 @@
 ]
 
 #slide[
-  = Live Coding
-  Now into Lean
+  = Abstract structures with type classes
+  Define properties of structures:
+  ```lean
+    class JoinSemiLattice (α: Type) : Type where
+      join : α -> α -> α
+      assoc : join a (join b c) = join (join a b) c
+      comm : join a b = join b a
+      idem : join a a = a
+  ```
+  Give concrete implementations for those properties:
+  ```lean
+    instance nat_join_semi_lattice : JoinSemiLattice Nat where
+      join := max
+      assoc := by simp
+      comm := by apply?
+      idem := by simp
+  ```
 ]
+
+#slide[
+  = Live Coding
+  Now lets code
+]
+
+#slide[
+  = Further interesting sources
+  / *Cheat sheet:*:
+  - https://leanprover-community.github.io/papers/lean-tactics.pdf
+  / *The Number Game:*: 
+    - https://adam.math.hhu.de/
+    - Good for beginners
+  / *Glimps of Lean:*: 
+    - https://github.com/PatrickMassot/GlimpseOfLean
+    - Shows different arias of Mathlib
+  / *Fermats Last Theorem in Lean:*:
+    - https://leanprover-community.github.io/blog/posts/FLT-announcement/
+    - Everyone can contribute
+]
+
