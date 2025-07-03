@@ -44,9 +44,9 @@ Spec k ⟶ X  --  ← is an arrow in the Scheme category,
 
 variable {k} [Field k] {R} [CommRing R]
 
-example (f : R →+* k) : k_valued_points k (Spec R) := by
-  change of R ⟶ of k at f
-  exact (specMap f)
+/- example (f : R →+* k) : k_valued_points k (Spec R) := by -/
+/-   change of R ⟶ of k at f -/
+/-   exact (specMap f) -/
 
 /-
 ###  Projective schemes (as locally ringed spaces)
