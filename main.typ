@@ -152,42 +152,6 @@
   )
 ]
 
-#slide[
-  = Defining new data types
-  We can define own data types with inductive definitions
-  ```lean
-  inductive Nat : Type where
-    | zero : Nat
-    | succ : Nat → Nat
-  ```
-  And we can define our own proposition types
-  ```lean
-  inductive XOr (A B : Prop) : Prop where
-    | left_not_right : A → ¬B → XOr A B
-    | right_not_left : ¬A → B → XOr A B
-
-  ```
-]
-
-#slide[
-  = Abstract structures with type classes
-  Define properties of structures:
-  ```lean
-    class JoinSemiLattice (α: Type) : Type where
-      join : α -> α -> α
-      assoc : join a (join b c) = join (join a b) c
-      comm : join a b = join b a
-      idem : join a a = a
-  ```
-  Give concrete implementations for those properties:
-  ```lean
-    instance nat_join_semi_lattice : JoinSemiLattice Nat where
-      join := max
-      assoc := by simp
-      comm := by apply?
-      idem := by simp
-  ```
-]
 
 #slide[
   = Live Coding
@@ -209,3 +173,48 @@
     - Everyone can contribute
 ]
 
+#slide[
+  = Thanks
+  #text(size: 3em)[Thank you for listening :-)]
+  
+]
+
+#slide[
+  = Defining new data types
+  We can define own data types with inductive definitions
+  ```lean
+  inductive Nat : Type where
+    | zero : Nat
+    | succ : Nat → Nat
+  ```
+  And we can define our own proposition types
+  ```lean
+  inductive XOr (A B : Prop) : Prop where
+    | left_not_right : A → ¬B → XOr A B
+    | right_not_left : ¬A → B → XOr A B
+
+  ```
+]
+
+#slide[
+  = Abstract structures with type classes
+  Define properties of structures:
+  ```lean
+  class JoinSemiLattice (α: Type) : Type where
+    join : α -> α -> α
+    assoc : join a (join b c) = join (join a b) c
+    comm : join a b = join b a
+    idem : join a a = a
+  ```
+]
+#slide[
+  = Abstract structures with type classes
+  Give concrete implementations for those properties:
+  ```lean
+  instance nat_join_semi_lattice : JoinSemiLattice Nat where
+    join := max
+    assoc := by simp
+    comm := by apply?
+    idem := by simp
+  ```
+]
