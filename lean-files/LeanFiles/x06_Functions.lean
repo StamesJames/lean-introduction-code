@@ -11,7 +11,7 @@ lemma lawvere (e : X -> (X -> Y)) : surjective e -> ∀ (f : Y -> Y), ∃ y, y =
    exact Hx
 
 
--- there is no surjective function from X to the functions (X -> Bool)
+-- there is no surjective function from X to the functions (X -> Bool) (or also written 2^X)
 lemma cantor : ¬ (∃ (f : X -> (X -> Bool)), surjective f) := by
   intro ⟨f, Hf⟩
   obtain ⟨b, Hb⟩ := lawvere f Hf Bool.not
